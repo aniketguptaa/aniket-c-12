@@ -1,0 +1,103 @@
+//Queue using array
+#include<stdio.h>
+#include<conio.h>
+#include<stdlib.h>
+
+#define max_size 3
+int queue_array[max_size];
+int rear = -1;
+int front = -1;
+
+void insert();
+void del();
+void display();
+
+int main()
+{
+	int choice;
+	
+	do
+	{
+		printf("\n1.Insert\n2.Delete\n3.Display\n4.Exit\n");
+		printf("\nEnter Your choice: ");
+		scanf("%d",&choice);
+		
+		switch(choice)
+		{
+			case 1:
+				{
+					insert();
+					break;
+				}
+			case 2:
+				{
+					del();
+					break;
+				}
+			case 3:
+				{
+					display();
+					break;
+				}
+			case 4:
+				{
+					exit(1);
+					break;
+				}
+			default:
+				{
+					printf("You have entered a wrong choice");
+				}
+		}
+		
+	}while(choice != 0);
+	getch();
+}
+
+void insert()
+{
+	int add_item;
+	if(rear == max_size - 1)
+		printf("\nQueue Overflow\n");
+	else
+	{
+		if(front == -1)
+			front = 0;
+		
+		printf("Enter the value to insert: ");
+		scanf("%d",&add_item);
+			
+		rear = rear + 1;
+		queue_array[rear] = add_item;
+		
+	}
+}
+
+void del()
+{
+	int del_element;
+	if(front == -1 || front > rear)
+	{
+		printf("\nQueue Underflow");
+		return;
+	}
+	else
+	{
+		printf("\nElement deleted\n");
+		del_element = queue_array[front];
+		printf("The deleted element is: %d",del_element);
+		front = front + 1;
+		printf("\n");
+	}
+}
+
+void display()
+{
+	int i;
+	printf("\n");
+	for (i=front; i<= rear; i++)
+	{
+		printf("Element is %d",queue_array[i]);
+		printf("\n");
+	}
+}

@@ -1,0 +1,96 @@
+//Stack using array
+
+#include<stdio.h>
+#include<conio.h>
+#include<stdlib.h>
+
+//Defining the max size of the array
+#define max_size 3
+
+int st[max_size], top = -1;
+void push();
+void pop();
+void display();
+
+int main()
+{
+	int choice;
+	do
+	{
+		printf("\n1.Push\n2.Pop\n3.Display\n4.Exit\n");
+		printf("\nEnter Your choice: ");
+		scanf("%d",&choice);
+	
+	switch(choice)
+		{
+			case 1:
+				{
+					push();
+					break;
+				}
+			case 2:
+				{
+					pop();
+					break;
+				}
+			case 3:
+				{
+					display();
+					break;
+				}
+			case 4:
+				{
+					exit(1);
+					break;
+				}
+			default:
+				{
+					printf("\nYou have entered a wrong choice");
+				}
+		}
+	}while(choice != 0);
+	getch();
+}
+
+//Function to push(insert) element in stack
+void push()
+{
+	//Checking if the stack is overflowing
+	if(top == max_size - 1)
+		printf("\nStack Overflow\n");
+	
+	else
+	{
+		int val;
+		printf("Enter value to push: ");
+		scanf("%d",&val);
+		top++;
+		st[top] = val;
+	}
+}
+
+//Fucntion to pop (delete) element in stack
+void pop()
+{
+	//Delete the top element (FIFO)
+	printf("\nThe deleted element is: %d",st[top]);
+	top--;
+	printf("\n");
+}
+
+//Function to display elements 
+void display()
+{
+	int i;
+	
+	//Stack is empty, user need to push elements to see
+	if(top < 0)
+		printf("\nStack is Empty\n");
+		
+	//Using loop to display all the elements in stack	
+	for (i=top; i>=0; i--)
+	{
+		printf("\nElement is %d",st[i]);
+	}
+	printf("\n");
+}
